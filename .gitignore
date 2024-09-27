@@ -1,2 +1,14 @@
 .env
 node_modules
+./Version_2/.env
+/Version_3/.env
+/Version_4/.env
+/Version_5/.env
+/Version_1/node_modules
+/Version_2/node_modules
+/Version_3/backend/node_modules
+/Version_3/frontend/node_modules
+/Version_4/frontend/node_modules
+/Version_4/backend/node_modules
+/Version_5/frontent/node_modules
+/Version_5/backend/node_modules
