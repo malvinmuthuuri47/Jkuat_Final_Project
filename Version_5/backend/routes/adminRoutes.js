@@ -4,7 +4,7 @@ const Admin = require('../models/adminModel')
 const Student = require('../models/studentModel')
 const bcrypt = require('bcrypt')
 const dotenv = require('dotenv')
-const { createTokens, validateToken } = require('../jwt/jwt')
+const { createTokens, validateToken, deleteToken } = require('../jwt/jwt')
 
 dotenv.config()
 
@@ -23,7 +23,7 @@ router.post('/signup', async (req, res) => {
             return res.status(400).json({ error: 'Missing email, password, or role' })
         }
 
-        const saltRounds = parseInt(process.env.saltRounds, 10)
+        const saltRounds = await bcrypt.genSalt(10)
         const hashPwd = await bcrypt.hash(password, saltRounds)
         const newAdmin = new Admin({
             role,
@@ -61,14 +61,18 @@ router.post('/login', async (req, res) => {
         const { refreshToken } = createTokens(admin)
         res.cookie("access-token", accessToken, {
             httpOnly: true,
-            secure: true
+            path: '/',
+            secure: 'true',
+            sameSite: 'None'
         })
         res.cookie("refresh-token",refreshToken, {
             maxAge: 60 * 60 * 24 * 30 * 1000,
             httpOnly: true,
-            secure: true
+            path: '/',
+            secure: 'true',
+            sameSite: 'None'
         })
-        res.status(200).json({ message: 'Login Successful' })
+        res.status(200).json({ message: 'Login Successful', email })
         console.log(req.body)
     } 
     catch (error) {
@@ -76,11 +80,11 @@ router.post('/login', async (req, res) => {
     }
 })
 
-router.post('/users', async (req, res) => {
+router.post('/users', validateToken, async (req, res) => {
     try {
         const { name, regNo, password, fees, subjects } = req.body
     
-        const saltRounds = parseInt(process.env.saltRounds, 10)
+        const saltRounds = await bcrypt.genSalt(10)
         const hashPwd = await bcrypt.hash(password, saltRounds)
     
         const newUser = new Student({
@@ -104,28 +108,39 @@ router.post('/users', async (req, res) => {
     }
 })
 
-router.get('/users', async (req, res) => {
-    const users = await Student.find()
-    if (!users) {
-        return res.status(400).json({ error: 'No Users Found' })
+router.get('/users', validateToken, async (req, res) => {
+    try {
+        console.log(req.headers)
+        const users = await Student.find()
+        if (!users) {
+            return res.status(400).json({ error: 'No Users Found' })
+        }
+        res.status(200).json({ message: 'Data from db', details: users })
     }
-    res.status(200).json({ message: 'Data from db', details: users })
+    catch (error) {
+        res.status(500).json({ message: "Error in getting user details", error })
+    }
 })
 
-router.get('/users/:regno', async (req, res) => {
-    console.log(req.params)
-    const { regno } = req.params
-
-    const user = await Student.findOne({regno})
-    if (!user) {
-        return res.status(400).json({ error })
+router.get('/users/:regno', validateToken, async (req, res) => {
+    try {
+        console.log(req.params)
+        const { regno } = req.params
+    
+        const user = await Student.findOne({regno})
+        if (!user) {
+            return res.status(400).json({ error })
+        }
+    
+        res.status(200).json({ message: 'User found', user })
+        // const user = await Student.find
     }
-
-    res.status(200).json({ message: 'User found', user })
-    // const user = await Student.find
+    catch (error) {
+        res.status(500).json({ message: "The users/regno route has a problem", error })
+    }
 })
 
-router.post('/users/:regno', async (req, res) => {
+router.post('/users/:regno', validateToken, async (req, res) => {
     const { name, fees, subjects } = req.body
     const { regno } = req.params
     const updateFields = {}
@@ -150,6 +165,25 @@ router.post('/users/:regno', async (req, res) => {
     }
     catch (error) {
         res.status(500).json({ error: 'Server Error', details: error })
+    }
+})
+
+router.delete('/users/:regno', validateToken, async (req, res) => {
+    const { regno } = req.params
+    const user = await Student.findOneAndDelete({ regno })
+
+    if (!user) {
+        res.status(400).json({ error: 'The user doesn\'t exist' })
+    }
+    res.status(200).json({ message: 'Successfully Deletes user' })
+})
+
+router.post('/logout', validateToken, deleteToken, async (req, res) => {
+    try {
+        res.status(200).json({ message: "You've successfully reached the endpoint" })
+    }
+    catch (error) {
+        res.send(500).json({ message: "An error occurred", error })
     }
 })
 

@@ -1,11 +1,325 @@
+:root {
+    --hover-color: rgb(124, 120, 120);
+    --form-section-color: rgb(49, 46, 46);
+    --navbar-color: rgb(49, 46, 46);
+    --link-text-color: rgb(255, 255, 255);
+    --link-hover-color: rgb(255, 51, 0);
+}
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box
+    box-sizing: border-box;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.sidebar {
+.main {
     height: 100vh;
-    width: 300px;
-    background-color: grey;
+    display: flex;
+    /* justify-content: space-around; */
+}
+
+.img-section {
+    /* border: 5px solid black; */
+    width: 60%;
+    display: inherit;
+}
+
+.form-section {
+    /* border: 5px solid black; */
+    width: 40%;
+    display: inherit;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--form-section-color);
+    color: white;
+}
+
+.form-section .regForm {
+    width: 80%;
+}
+
+.form-section .regForm button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 12px 0 12px 0;
+    width: 45%;
+    justify-content: center;
+    margin: 15px auto;
+    text-align: center;
+}
+
+.form-section .regForm p {
+    margin: 12px 0 12px 0;
+}
+
+.form-section .regForm h2, h3 {
+    padding: 12px 0;
+    margin: 8px 0 8px 0;
+    text-align: center;
+}
+
+.form-section .regForm .regFormLink {
+    text-decoration: none;
+    color: white;
+}
+
+.form-section .regForm .regFormLink:hover {
+    cursor: pointer;
+    color: var(--hover-color);
+}
+
+.form-section input {
+    width: 100%;
+    padding: 12px;
+    margin: 5px auto;
+}
+
+/* Admin login page */
+.main-section {
+    height: 100vh;
+    display: flex;
+}
+
+.main-section .img-div {
+    width: 60%;
+    display: inherit;
+}
+
+.main-section .form-div {
+    display: flex;
+    width: 40%;
+    background-color: var(--form-section-color);
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-section .form-div form {
+    width: 100%;
+    padding: 10px 10px;
+    margin: 5px auto;
+}
+
+.main-section .form-div form input {
+    width: 85%;
+    padding: 12px;
+    margin: 10px 8px;
+}
+
+.main-section .form-div form button {
+    padding: 8px;
+    margin: 10px 8px;
+    width: 50%;
+}
+
+.main-section .form-div button:hover {
+    cursor: pointer;
+    background-color: var(--hover-color);
+}
+
+/* Navbar CSS */
+.navbar {
+    background-color: var(--navbar-color);
+    padding: 12px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    margin: 8px 8px 8px 8px;
+    border-radius: 10%;
+}
+
+.navbar a:hover {
+    background-color: var(--link-hover-color);
+    color: var(--link-text-color);
+}
+
+.navbar button {
+    border-radius: 8px;
+    padding: 4px;
+    width: 15%;
+}
+
+.navbar button:hover {
+    cursor: pointer;
+    background-color: var(--link-hover-color);
+    color: white;
+}
+
+.dummy-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    margin: 10px;
+    /* flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+}
+
+.dummy-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;;
+    align-items: center;
+}
+
+.dummy-content p {
+    flex: 0 1 45%;
+    margin: 0;
+    padding: 10px;
+    border: 2px dotted var(--navbar-color);
+}
+
+/* ViewUsers */
+.userDetails-container .userDetails-div {
+    /* background-color: red; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    /* flex: 1 1 400px; */
+    padding: 8px;
+    margin: 8px;
+}
+
+.userDetails-container .userDetails-div input {
+    padding: 8px;
+    margin: 8px;
+}
+
+.userDetails-container .userDetails-div .userData-section {
+    width: 33%;
+    padding: 10px;
+    border: 2px dotted var(--navbar-color);
+    border-radius: 4px;
+}
+
+.userDetails-container .userDetails-div .userData-section p {
+    display: inline-block;
+}
+
+.userDetails-container .userDetails-div .userData-section .userData-section-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.userDetails-container .userDetails-div .userData-section .userData-section-buttons button {
+    padding: 8px;
+    margin: 8px;
+}
+
+.userDetails-container .userDetails-div .userData-section .userData-section-buttons button:hover {
+    cursor: pointer;
+}
+
+/* UserRegistration Styles */
+.userreg-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.userreg-form form {
+    width: 100%;
+}
+
+.userreg-form label {
+    display: inline-block;
+    padding: 5px;
+    margin-top: 5px;
+    /* margin-left: 1px; */
+}
+
+.userreg-form input {
+    padding: 10px;
+    /* margin-left: 10px; */
+    width: 100%;
+}
+
+.userreg-form h3 {
+    text-align: start;
+    margin-left: 5px;
+}
+
+.userreg-form button {
+    display: block;
+    padding: 8px;
+    margin: 5px auto;
+    width: 40%;
+}
+
+/* EditUser/:id CSS */
+.individual-userDetails-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.individual-userDetails label {
+    display: block;
+    margin-left: 4px;
+}
+
+.individual-userDetails input {
+    padding: 10px;
+    margin: 5px;
+    width: 105%;
+}
+
+.individual-userDetails button {
+    padding: 10px;
+    display: block;
+    margin: 5px auto;
+    width: 40%;
+}
+
+/* UserDashBoard CSS */
+.userDashContainer {
+    width: 100%;
+}
+
+.userDashContainer .userNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--navbar-color);
+    color: white;
+    padding: 10px;
+    /* height: 2vh; */
+}
+
+.userDashContainer .userNav button {
+    padding: 10px;
+    margin: 3px;
+}
+
+.userDashContainer .userNav button:hover {
+    cursor: pointer;
+    background-color: var(--link-hover-color);
+    color: white;
+    border-radius: 5px;
+}
+
+.userDashContainer .userDetails p {
+    display: inline-block;
+    padding: 4px;
+    margin: 3px auto;
+}
+
+/* Footer */
+.Footer {
+    background-color: var(--form-section-color);
+    color: var(--link-text-color);
+    text-align: center;
+    padding: 12px;
+    margin-top: 8px;
 }

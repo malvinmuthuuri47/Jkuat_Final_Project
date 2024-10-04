@@ -13,7 +13,7 @@ router.post('/signup', async (req, res) => {
             return res.status(400).json({ error: 'Missing Registration Number or Password' })
         }
 
-        const saltRounds = parseInt(process.env.saltRounds, 10)
+        const saltRounds = await bcrypt.genSalt(10)
         const hashPwd = await bcrypt.hash(password, saltRounds)
         const newUser = new Student({
             regno: regNo,
@@ -45,11 +45,27 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ error: 'Invalid email or Password' })
         }
 
-        res.status(200).json({ message: 'Login successful' })
+        res.status(200).json({ message: 'Login successful', data: regNo })
         console.log(req.body)
     }
     catch (error) {
         res.status(500).json({ error: 'Server Error', details: error })
+    }
+})
+
+router.post('/data', async (req, res) => {
+    try {
+        console.log(req)
+        const { regno } = req.body
+        const user = await Student.findOne({ regno: regno })
+
+        if (user) {
+            res.status(200).json({ message: 'User Found', data: user })
+        }
+        // res.status(200).json({ message: 'Data found' })
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Server Error', error })
     }
 })
 

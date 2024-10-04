@@ -1,0 +1,17 @@
+import React from 'react'
+
+const MainContent = () => {
+  return (
+    <div className='dummy-container'>
+      <div className="dummy-content">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto quae rem ut sapiente error quam corrupti repellat nemo in eligendi saepe non quia corporis ipsam, laudantium dicta aliquam enim officia vel esse adipisci? Ullam voluptatum exercitationem accusamus eligendi, quibusdam voluptate fugit possimus, assumenda harum repudiandae necessitatibus magni itaque quia molestiae nisi! Molestiae odio atque autem ea incidunt, sequi in ut aspernatur et ratione adipisci voluptatibus quisquam maiores a sint fuga officiis? Repudiandae sunt vero nobis nesciunt quos iure veritatis optio, hic excepturi laudantium necessitatibus earum tenetur id! Veniam beatae quod necessitatibus praesentium, cupiditate nam expedita doloribus voluptas facere repellendus sint.</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto quae rem ut sapiente error quam corrupti repellat nemo in eligendi saepe non quia corporis ipsam, laudantium dicta aliquam enim officia vel esse adipisci? Ullam voluptatum exercitationem accusamus eligendi, quibusdam voluptate fugit possimus, assumenda harum repudiandae necessitatibus magni itaque quia molestiae nisi! Molestiae odio atque autem ea incidunt, sequi in ut aspernatur et ratione adipisci voluptatibus quisquam maiores a sint fuga officiis? Repudiandae sunt vero nobis nesciunt quos iure veritatis optio, hic excepturi laudantium necessitatibus earum tenetur id! Veniam beatae quod necessitatibus praesentium, cupiditate nam expedita doloribus voluptas facere repellendus sint.</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto quae rem ut sapiente error quam corrupti repellat nemo in eligendi saepe non quia corporis ipsam, laudantium dicta aliquam enim officia vel esse adipisci? Ullam voluptatum exercitationem accusamus eligendi, quibusdam voluptate fugit possimus, assumenda harum repudiandae necessitatibus magni itaque quia molestiae nisi! Molestiae odio atque autem ea incidunt, sequi in ut aspernatur et ratione adipisci voluptatibus quisquam maiores a sint fuga officiis? Repudiandae sunt vero nobis nesciunt quos iure veritatis optio, hic excepturi laudantium necessitatibus earum tenetur id! Veniam beatae quod necessitatibus praesentium, cupiditate nam expedita doloribus voluptas facere repellendus sint.</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto quae rem ut sapiente error quam corrupti repellat nemo in eligendi saepe non quia corporis ipsam, laudantium dicta aliquam enim officia vel esse adipisci? Ullam voluptatum exercitationem accusamus eligendi, quibusdam voluptate fugit possimus, assumenda harum repudiandae necessitatibus magni itaque quia molestiae nisi! Molestiae odio atque autem ea incidunt, sequi in ut aspernatur et ratione adipisci voluptatibus quisquam maiores a sint fuga officiis? Repudiandae sunt vero nobis nesciunt quos iure veritatis optio, hic excepturi laudantium necessitatibus earum tenetur id! Veniam beatae quod necessitatibus praesentium, cupiditate nam expedita doloribus voluptas facere repellendus sint.</p>
+        
+      </div>
+    </div>
+  )
+}
+
+export default MainContent
