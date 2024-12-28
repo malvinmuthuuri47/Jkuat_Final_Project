@@ -18,6 +18,11 @@ const EditUser = () => {
         }))
     }
 
+    const prevPage = (e) => {
+        e.preventDefault()
+        navigate(-1)
+    }
+
     const handleSubjectChange = (index, field, value) => {
         const updatedSubjects = userDetails.subjects.map((subject, i) => (
             i === index ? { ...subject, [field]: value } : subject
@@ -115,7 +120,10 @@ const EditUser = () => {
                             ) : (
                                 <p>No Subjects Available</p>
                             )}
-                            <button type="submit">Submit</button>
+                            <div className="button-container">
+                                <button type="submit">Submit</button>
+                                <button onClick={prevPage}>Go Back</button>
+                            </div>
                         </form>
                     </div>
                 </div>

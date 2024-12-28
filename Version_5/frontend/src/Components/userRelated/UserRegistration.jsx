@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../Navbar'
 import Footer  from '../Footer'
 import axios from 'axios'
@@ -19,12 +20,18 @@ const UserRegistration = () => {
         { name: 'Unit 7', score: '0' },
         { name: 'Unit 8', score: '0' },
     ])
+    const navigate = useNavigate()
 
     const handleSubjectChange = (index, e) => {
         const { name, value } = e.target
         const newSubjects = [...subjects]
         newSubjects[index][name] = value
         setSubjects(newSubjects)
+    }
+
+    const prevPage = (e) => {
+        e.preventDefault()
+        navigate(-1)
     }
 
     const handleSubmit = async (e) => {
@@ -40,9 +47,8 @@ const UserRegistration = () => {
             }
 
             const response = await axios.post('http://127.0.0.1:5000/admin/users', studentData)
-
+            navigate('/admin/viewStudents')
             console.log(response)
-            
         }
         catch (error) {
             console.log("Error submitting user data", error)
@@ -107,7 +113,10 @@ const UserRegistration = () => {
                         </div>
                         )
                     })}
-                    <button type="submit">Submit</button>
+                    <div className="button-container">
+                        <button type="submit">Submit</button>
+                        <button onClick={prevPage}>Go Back</button>
+                    </div>
                 </form>
             </div>
         </div>

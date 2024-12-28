@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/data', async (req, res) => {
     try {
-        console.log(req)
+        // console.log(req)
         const { regno } = req.body
         const user = await Student.findOne({ regno: regno })
 

@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 axios.defaults.withCredentials = true
 
 const ViewUsers = () => {
     const [userData, setUserData] = useState([])
     const [loading, setLoading] = useState(true)
-    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -66,6 +66,10 @@ const ViewUsers = () => {
                         <div className='userData-section-buttons'>
                             <Link to={`/admin/editStudent/${data.regno}`}>
                                 <button>Edit</button>
+                            </Link>
+
+                            <Link to={`/admin/editStudent/sendNotification/${data.regno}`}>
+                                <button>Send Message</button>
                             </Link>
                             
                             <button onClick={() => handleDelete(data.regno)}>Delete</button>

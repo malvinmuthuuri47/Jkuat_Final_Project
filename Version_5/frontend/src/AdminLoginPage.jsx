@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
+import SchoolIcon from '@mui/icons-material/School'
 import { AuthContext } from './context/AuthContext'
 axios.defaults.withCredentials = true
 
@@ -17,8 +18,7 @@ const AdminLoginPage = () => {
         try {
             await axios.post("http://127.0.0.1:5000/admin/login", { role, email, password })
             .then((response) => {
-              console.log(response)
-              const email = response.data.email
+              const email = response.data.admin.email
               dispatch({type: 'LOGIN', payload: response})
               localStorage.setItem('admin', JSON.stringify(email))
               navigate('/adminDashboard')
@@ -44,11 +44,14 @@ const AdminLoginPage = () => {
       </div>
       <div className='form-div'>
         <form method='POST' onSubmit={handleSubmit}>
+          <SchoolIcon />
+          <h2>Welcome to XYZ Campus.</h2>
+          <h3>Championing Excellence and Briliance</h3>
           <div className="input-group">
             <label htmlFor='input1'>Admin Email:</label> <br/>
             <input 
               id='input1'
-              type='email'
+              type='text'
               name='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -64,10 +67,12 @@ const AdminLoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
             /><br />
           </div>
-          <button type='submit'>Login</button>
-          <Link to='/'>
-            <button>Back to Home Page</button>
-          </Link>
+          <div className="button-container">
+            <button type='submit'>Login</button>
+            <Link to='/'>
+              <button>Back to Home Page</button>
+            </Link>
+          </div>
         </form>
       </div>
 

@@ -8,6 +8,7 @@ import UserRegistration from './Components/userRelated/UserRegistration'
 import ViewUsers from './Components/userRelated/ViewUsers'
 import EditUser from './Components/userRelated/EditUser'
 import ProtectedRoute from './Components/ProtectedRoute'
+import NotificationPage from './Components/notifications/NotificationPage';
 
 function App() {
 
@@ -40,6 +41,11 @@ function App() {
           <Route exact path='/admin/editStudent/:regno' element={
             <ProtectedRoute>
               <EditUser />
+            </ProtectedRoute>
+          } />
+          <Route exact path='/admin/editStudent/sendNotification/:regno' element={
+            <ProtectedRoute>
+              <NotificationPage />
             </ProtectedRoute>
           } />
         </Routes>
