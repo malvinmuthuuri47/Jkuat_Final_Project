@@ -42,8 +42,8 @@ const NotificationPage = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
             />
-            <button>Send Message</button>
-            <button onClick={handleNavigate}>Go Back</button>
+            <button type="submit">Send Message</button>
+            <button onClick={handleNavigate} type="button">Go Back</button>
         </form>
     </div>
   )
