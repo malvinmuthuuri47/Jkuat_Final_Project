@@ -18,6 +18,6 @@ const adminSchema = new mongoose.Schema({
 })
 
 const Admin = mongoose.model('Admin', adminSchema)
-// Admin.createIndexes()
+Admin.createIndexes()
 
 module.exports = Admin
