@@ -45,9 +45,9 @@ router.post('/login', async (req, res) => {
     try {
         const { email, password, role } = req.body
         // const { email, password, role } = sanitize(req.body)
-        // if (!email || !password || !role) {
-        //     return res.status(400).json({ error: 'Missing Registration Number or Password' })
-        // }
+        if (!email || !password || !role) {
+            return res.status(400).json({ error: 'Missing Registration Number or Password' })
+        }
 
         const admin = await Admin.findOne({ email: email })
         if (!admin) {
