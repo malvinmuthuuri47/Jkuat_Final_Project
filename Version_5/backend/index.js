@@ -54,7 +54,7 @@ io.on('connection', (socket) => {
         const targetSocketId = regNoToSocketMap.get(regno)
 
         if (targetSocketId) {
-            socket.to(targetSocketId).emit('messageFromAdmin', message)
+            io.to(targetSocketId).emit('messageFromAdmin', message)
         } else {
             console.log(`No user with ${regno} exists`)
         }
