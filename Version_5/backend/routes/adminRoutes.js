@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const dotenv = require('dotenv')
 const sanitize = require('mongo-sanitize')
 const { createTokens, validateToken, deleteToken } = require('../jwt/jwt')
+const Audit = require('../models/auditModel')
 
 dotenv.config()
 
@@ -45,6 +46,8 @@ router.post('/login', async (req, res) => {
     try {
         const { email, password, role } = req.body
         // const { email, password, role } = sanitize(req.body)
+
+
         if (!email || !password || !role) {
             return res.status(400).json({ error: 'Missing Registration Number or Password' })
         }
@@ -143,7 +146,7 @@ router.get('/users/:regno', validateToken, async (req, res) => {
     }
 })
 
-router.post('/users/:regno', validateToken, async (req, res) => {
+router.put('/users/:regno', validateToken, async (req, res) => {
     const { name, fees, subjects } = req.body
     const { regno } = req.params
     const updateFields = {}
@@ -152,6 +155,23 @@ router.post('/users/:regno', validateToken, async (req, res) => {
     if (fees) updateFields.fees = fees
 
     if (subjects && subjects.length > 0) updateFields.subjects = subjects
+
+    // console.log("admin request object", req)
+
+    try {
+        const { body, user, path } = req
+    
+        const newAudit = new Audit({
+            body,
+            user,
+            path
+        })
+    
+        await newAudit.save()
+    }
+    catch (err) {
+        console.log("Error in the audit code", err)
+    }
 
     try {
         const updatedUser = await Student.findOneAndUpdate(

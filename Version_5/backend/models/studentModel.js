@@ -33,7 +33,7 @@ const studentSchema = new mongoose.Schema({
     subjects: [
         subjectSchema
     ]
-})
+}, { timestamps: true })
 
 const Student = mongoose.model('Student', studentSchema)
 Student.createIndexes()

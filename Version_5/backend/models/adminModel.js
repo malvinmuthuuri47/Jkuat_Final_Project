@@ -1,5 +1,6 @@
 // Role email Password
 const mongoose = require('mongoose')
+const { format } = require('date-fns')
 
 const adminSchema = new mongoose.Schema({
     role: {
@@ -14,8 +15,17 @@ const adminSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
     }
 })
+
 
 const Admin = mongoose.model('Admin', adminSchema)
 Admin.createIndexes()
